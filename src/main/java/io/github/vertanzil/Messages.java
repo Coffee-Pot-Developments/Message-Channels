@@ -1,7 +1,5 @@
 package io.github.vertanzil;
 
-import java.text.Format;
-
 public enum Messages {
     Message_001("0001", "Files not found."),
     Message_002("0002", "No connection to the database"),
@@ -30,7 +28,7 @@ public enum Messages {
         return ERROR_CODE_PREFIX ;
     }
 
-    public String GetFormattedDescriptionWithCode(){
+    public String getFormattedDescriptionWithCode(){
         return getCode() + " " + getDescription();
     }
 
