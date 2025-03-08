@@ -4,10 +4,12 @@ class Main {
 
     public static void main(String[] args) {
         //Gets the error code only.
-        System.out.print(Messages.Message_001.getCode() + System.lineSeparator());
+        System.out.print(Messages.FILE_NOT_FOUND.getCode() + System.lineSeparator());
         //gets the formatted description and reason.
-        System.out.print(Messages.Message_001.getFormattedDescription() + System.lineSeparator());
-        //Gets the formatted description with code and reason.
-        System.out.print(Messages.Message_001.getFormattedDescriptionWithCode() + System.lineSeparator());
+        System.out.print(Messages.FILE_NOT_FOUND.getFormattedDescription() + System.lineSeparator());
+        //gets the code only.
+        System.out.print(Messages.NO_DB_CONNECTION.getCode());
+        //gets the description only.
+        System.out.print(Messages.NO_DB_CONNECTION.getDescription());
     }
 }

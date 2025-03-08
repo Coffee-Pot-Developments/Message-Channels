@@ -1,25 +1,35 @@
 package io.github.vertanzil;
 
-/**
- *
- */
 public enum Messages {
-    Message_001("0001", "Files not found."),
-    Message_002("0002", "No connection to the database"),
-    Message_003("0003", "Server offline"),
-    Message_004("0004", "Not found"),
+    /**
+     * Error code for file not found.
+     */
+    FILE_NOT_FOUND("0001", "Files not found."),
+
+    /**
+     * Error code for no database connection.
+     */
+    NO_DB_CONNECTION("0002", "No connection to the database"),
+
+    /**
+     * Error code for server offline.
+     */
+    SERVER_OFFLINE("0003", "Server offline"),
+
+    /**
+     * Error code for not found.
+     */
+    NOT_FOUND("0004", "Not found"),
     ;
 
-    private String code;
-    private String description;
+    private final String code;
+    private final String description;
     private static final String ERROR_CODE_PREFIX = "BCV";
 
-    private void Error(final String code, final String description) {
-        this.code = code;
-        this.description = description;
-    }
-
     Messages(final String number, final String s) {
+        if (number == null || number.isEmpty() || s == null || s.isEmpty()) {
+            throw new IllegalArgumentException("Number and description must not be null or empty");
+        }
         code = ERROR_CODE_PREFIX + number;
         description = s;
     }
@@ -56,7 +66,7 @@ public enum Messages {
      * @return description formatted with code.
      */
     public String getFormattedDescription() {
-        return ERROR_CODE_PREFIX + " " + description;
+        return code + " " + description;
     }
 
 }
