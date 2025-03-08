@@ -1,5 +1,8 @@
 package io.github.vertanzil;
 
+/**
+ *
+ */
 public enum Messages {
     Message_001("0001", "Files not found."),
     Message_002("0002", "No connection to the database"),
@@ -11,20 +14,26 @@ public enum Messages {
     private String description;
     private static final String ERROR_CODE_PREFIX = "BCV";
 
-    private void Error(String code, String description) {
+    private void Error(final String code, final String description) {
         this.code = code;
         this.description = description;
     }
 
-    Messages(String number, String s) {
-        this.code = ERROR_CODE_PREFIX + number;
-        this.description = s;
+    Messages(final String number, final String s) {
+        code = ERROR_CODE_PREFIX + number;
+        description = s;
     }
 
+    /**
+     * @return description
+     */
     public String getDescription() {
         return description;
     }
 
+    /**
+     * @return error code
+     */
     public String getCode() {
         return code;
     }
@@ -33,10 +42,16 @@ public enum Messages {
         return ERROR_CODE_PREFIX;
     }
 
+    /**
+     * @return Error code and description that is formatted.
+     */
     public String getFormattedDescriptionWithCode() {
         return code + " " + description;
     }
 
+    /**
+     * @return description formatted with code.
+     */
     public String getFormattedDescription() {
         return ERROR_CODE_PREFIX + " " + description;
     }
