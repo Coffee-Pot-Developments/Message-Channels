@@ -29,16 +29,16 @@ public enum Messages {
         return code;
     }
 
-    private String getErrorCodePrefix() {
+    public String getErrorCodePrefix() {
         return ERROR_CODE_PREFIX;
     }
 
     public String getFormattedDescriptionWithCode() {
-        return getCode() + " " + getDescription();
+        return code + " " + description;
     }
 
     public String getFormattedDescription() {
-        return getErrorCodePrefix() + " " + getDescription();
+        return ERROR_CODE_PREFIX + " " + description;
     }
 
 }

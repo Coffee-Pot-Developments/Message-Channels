@@ -2,6 +2,7 @@ package io.github.vertanzil;
 
 public class Main {
     public static void main(String[] args) {
+        Messages messages;
         //Gets the error code only.
         System.out.print(Messages.Message_001.getCode() + System.lineSeparator());
         //gets the formatted description and reason.
