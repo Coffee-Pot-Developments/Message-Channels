@@ -38,6 +38,9 @@ public enum Messages {
         return code;
     }
 
+    /**
+     * @return get error code with prefix
+     */
     public static String getErrorCodePrefix() {
         return ERROR_CODE_PREFIX;
     }
