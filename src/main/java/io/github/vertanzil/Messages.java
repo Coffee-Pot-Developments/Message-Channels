@@ -1,5 +1,11 @@
 package io.github.vertanzil;
 
+import java.util.Arrays;
+import java.util.Optional;
+import java.util.Collections;
+/**
+ * This enum is immutable and thread-safe.
+ */
 public enum Messages {
     /**
      * Error code for file not found.
@@ -26,12 +32,16 @@ public enum Messages {
     private final String description;
     private static final String ERROR_CODE_PREFIX = "BCV";
 
-    Messages(final String number, final String s) {
-        if (number == null || number.isEmpty() || s == null || s.isEmpty()) {
-            throw new IllegalArgumentException("Number and description must not be null or empty");
+    private static void validateParameters(final String code, final String description) {
+        if (code == null || code.isEmpty() || description == null || description.isEmpty()) {
+            throw new IllegalArgumentException("Code and description must not be null or empty");
         }
-        code = ERROR_CODE_PREFIX + number;
-        description = s;
+    }
+
+    Messages(final String code, final String description) {
+        validateParameters(code, description);
+        this.code = ERROR_CODE_PREFIX + code;
+        this.description = description;
     }
 
     /**
@@ -69,4 +79,25 @@ public enum Messages {
         return code + " " + description;
     }
 
+    /**
+     * Retrieve a Messages enum by its code.
+     * @param code the code to search for
+     * @return an Optional containing the matching Messages enum, or empty if not found
+     */
+    public static Optional<Messages> fromCode(String code) {
+        return Collections.unmodifiableList(Arrays.asList(values())).stream()
+                .filter(message -> message.getCode().equals(ERROR_CODE_PREFIX + code))
+                .findFirst();
+    }
+
+    /**
+     * Retrieve a Messages enum by its description.
+     * @param description the description to search for
+     * @return an Optional containing the matching Messages enum, or empty if not found
+     */
+    public static Optional<Messages> fromDescription(String description) {
+        return Arrays.stream(values())
+                .filter(message -> message.getDescription().equals(description))
+                .findFirst();
+    }
 }
