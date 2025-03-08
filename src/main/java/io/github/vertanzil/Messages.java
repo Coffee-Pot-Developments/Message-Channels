@@ -29,7 +29,7 @@ public enum Messages {
         return code;
     }
 
-    public String getErrorCodePrefix() {
+    public static String getErrorCodePrefix() {
         return ERROR_CODE_PREFIX;
     }
 
